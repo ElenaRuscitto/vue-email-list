@@ -6,8 +6,8 @@ createApp ({
     return {
 
       apiURL: 'https://flynn.boolean.careers/exercises/api/random/mail',
-      myEmailArray: [],
-      risultato: ''
+      myEmailArray: []
+
     }
   },
 
@@ -15,16 +15,15 @@ createApp ({
 
     getApi() {
 
-      for (let i = 0; i >= 10; i++) {
+      for (let i = 0; i < 10; i++) {
         axios.get(this.apiURL)
-        .then((risposta) => {
+        .then((risultato) => {
 
           console.log(risultato.data);
-          // data è il contenuto della risposta che DOBBIAMO SEMPRE studiare perché non sappiamo prima come è fatto
           console.log('----->>> ',risultato.data.response);
 
-          // this.title diventa 'OK' se risposta.data.response === true
-          this.title = risultato.data.response ? 'OK' : 'NOOOO!!!'
+          this.myEmailArray.push(risultato.data.response)
+          // this.risultato = risposta.data.response.join(', ')
         })
         .catch(errore => {
           console.log('MESSAGGIO DI ERRORE');
@@ -39,6 +38,6 @@ createApp ({
   },
 
   mounted() {
-
+    this.getApi()
   },
 }).mount('#app')

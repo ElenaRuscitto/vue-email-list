@@ -21,8 +21,10 @@
 
   <div id="app">
     <div class="container">
-
-      <h1>{{ risultato }}</h1>
+        <h1>10 indirizzi mail</h1>
+      <ul>
+        <li v-for="email in myEmailArray"> {{email}}</li>
+      </ul>
     </div>
 
 
